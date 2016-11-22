@@ -22,8 +22,8 @@ func _process(delta):
 	if (is_colliding()):
 		print("HAIHsd")
 	_move_player()
-#	_get_collision()
-	
+	global.player_location = [self.get_pos()[0], self.get_pos()[1]]
+
 func _move_player():
 	var x = get_pos()[0]
 	var y = get_pos()[1]

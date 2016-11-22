@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="6" version="2.1" version_name="Godot Engine v2.1.stable.official">
 	<ext_resource path="res://scripts/player.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://scripts/player_area.gd" type="Script" index="2"></ext_resource>
 	<ext_resource path="res://icon.png" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://scripts/player_area.gd" type="Script" index="2"></ext_resource>
 	<resource type="CircleShape2D" path="local://2">
 		<real name="custom_solver_bias"> 0 </real>
 		<real name="radius"> 10 </real>

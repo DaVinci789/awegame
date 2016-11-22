@@ -8,7 +8,6 @@ onready var n2 = get_node("runner")
 onready var pause_menu = get_node("hud/pause_container")
 onready var dev_label_text = get_node("hud/vertical/important_data")
 onready var score_label = get_node("hud/vertical/score")
-var score = 0
 
 var time_til_next_jump = 180
 
@@ -32,7 +31,7 @@ func _process(delta):
 		pass
 	print(_distance_to(n1, n2))
 	#print(get_node("Timer").get_time_left())
-	score_label.set_text(str(score))
+	score_label.set_text(str(global.player_score))
 
 func _input(delta):
 	#print(distance_to(n1, n2))
@@ -58,11 +57,11 @@ func _on_timer_win():
 	if (_distance_to(n1, n2) <= 15):
 		n2.set_pos(Vector2(n2.get_pos()[0] + rand_range(-301, 301), n2.get_pos()[1] + rand_range(-301, 301)))
 		get_node("Timer").stop()
-		score += 1
+		global.player_score += 1
 	else:
 		print("YOU LOSE")
 		self.set_pause_mode(true)
-		get_tree().change_scene("res://menu.xml")
+		get_tree().change_scene("res://scenes/game_over.xml")
 		#get_node("Timer").stop()
 
 # Literally just the distance formula.
