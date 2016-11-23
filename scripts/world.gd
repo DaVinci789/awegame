@@ -8,8 +8,9 @@ onready var n2 = get_node("runner")
 onready var pause_menu = get_node("hud/pause_container")
 onready var dev_label_text = get_node("hud/vertical/important_data")
 onready var score_label = get_node("hud/vertical/score")
+onready var camera_collision = get_node("chaser/Camera2D/Area2D")
 
-export (int) var WIN_DISTANCE = 8
+export (int) var WIN_DISTANCE = 10
 
 var time_til_next_jump = 180
 
@@ -22,16 +23,17 @@ var time_til_next_jump = 180
 func _ready():
 	get_node("chaser/player_area").connect("body_enter", self, "_set_win")
 	get_node("Timer").connect("timeout", self, "_on_timer_win")
+	camera_collision.connect("body_enter", self, "_on_camera_enter")
 	set_process(true)
 	set_process_input(true)
 	dev_label_text.set_text(str(n1.speed))
 	score_label.set_text("0")
 
 func _process(delta):
-	dev_label_text.set_text(str(n1.speed))
+	dev_label_text.set_text(str(n2.speed))
 	if (_distance_to(n1, n2) <= 1.9):
 		pass
-	print(_distance_to(n1, n2))
+	#print(_distance_to(n1, n2))
 	#print(get_node("Timer").get_time_left())
 	score_label.set_text(str(global.player_score))
 
@@ -54,14 +56,21 @@ func _set_win(body):
 func _on_timer_win():
 	print("entered win cond.")
 	if (_distance_to(n1, n2) <= WIN_DISTANCE):
-		n2.set_pos(Vector2(n2.get_pos()[0] + rand_range(-301, 301), n2.get_pos()[1] + rand_range(-301, 301)))
+		n2.randomize_pos()
 		get_node("Timer").stop()
+		n2.randomize_speed()
 		global.player_score += 1
+		if (global.player_score % 5 == 0):
+			WIN_DISTANCE -= 1
 	else:
 		print("YOU LOSE")
 		self.set_pause_mode(true)
 		get_tree().change_scene("res://scenes/game_over.xml")
 		#get_node("Timer").stop()
+
+func _on_camera_enter(body):
+	if (body.get_name() == "runner"):
+		print("ok")
 
 # Literally just the distance formula.
 # Just a style change rather than doing node1.get_pos().distance_to(node2.get_pos())
