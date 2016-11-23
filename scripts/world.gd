@@ -9,13 +9,15 @@ onready var pause_menu = get_node("hud/pause_container")
 onready var dev_label_text = get_node("hud/vertical/important_data")
 onready var score_label = get_node("hud/vertical/score")
 
+export (int) var WIN_DISTANCE = 8
+
 var time_til_next_jump = 180
 
 # Timer to test for win
 #var timer     = null
 #var win_delay = 3
 #var is_won    = false
-var win_times_called = 0
+#var win_times_called = 0
 
 func _ready():
 	get_node("chaser/player_area").connect("body_enter", self, "_set_win")
@@ -45,16 +47,13 @@ func _input(delta):
 # Misc. Functions
 
 func _set_win(body):
-	print("hello")
-	if (win_times_called == 0):
-		win_times_called += 1
-	else:
+	if (body.get_name() == "runner"):
 		get_node("Timer").start()
 	pass
 
 func _on_timer_win():
 	print("entered win cond.")
-	if (_distance_to(n1, n2) <= 15):
+	if (_distance_to(n1, n2) <= WIN_DISTANCE):
 		n2.set_pos(Vector2(n2.get_pos()[0] + rand_range(-301, 301), n2.get_pos()[1] + rand_range(-301, 301)))
 		get_node("Timer").stop()
 		global.player_score += 1
@@ -67,7 +66,8 @@ func _on_timer_win():
 # Literally just the distance formula.
 # Just a style change rather than doing node1.get_pos().distance_to(node2.get_pos())
 func _distance_to(p1, p2):
-	return sqrt(pow(p2.get_pos()[0] - p1.get_pos()[0], 2) + pow(p2.get_pos()[1] - p1.get_pos()[1], 2))
+	#return sqrt(pow(p2.get_pos()[0] - p1.get_pos()[0], 2) + pow(p2.get_pos()[1] - p1.get_pos()[1], 2))
+	return p1.get_pos().distance_to(p2.get_pos())
 
 # Got this off of reddit. Don't question it.
 # I don't know if we still need this due to CanvasLayers implemented.
