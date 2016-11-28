@@ -24,6 +24,7 @@ func _process(delta):
 		move(Vector2(-speed, 0))
 		current_animation = "walk_left"
 	else:
+		last_animation = null
 		anim.stop()
 	
 	if (current_animation != last_animation):
