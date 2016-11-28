@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scenes/entities/player.gd" type="Script" id=1]
+[ext_resource path="res://assets/llama_walk.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "walk_down"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("player_sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 11, 8 ] }
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "walk_forward"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("player_sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 3, 0 ] }
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "walk_left"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("player_sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 7, 4 ] }
+
+[sub_resource type="Animation" id=5]
+
+resource/name = "walk_right"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("player_sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 15, 12 ] }
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="player" type="KinematicBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 2.47495, 0, 0, 3.20827, -0.771701, -3.41726 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+speed = 5
+
+[node name="player_sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+frame = 14
+
+[node name="player_anim" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/walk_down = SubResource( 2 )
+anims/walk_forward = SubResource( 3 )
+anims/walk_left = SubResource( 4 )
+anims/walk_right = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="player_coll" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -0.771701, -3.41726 )
+transform/scale = Vector2( 2.47495, 3.20827 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="player_area" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="player_collision" type="CollisionShape2D" parent="player_area"]
+
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+
