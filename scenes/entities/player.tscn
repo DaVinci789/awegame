@@ -66,7 +66,7 @@ extents = Vector2( 10, 10 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 2.47495, 0, 0, 3.20827, -0.771701, -3.41726 )
-shapes/0/trigger = false
+shapes/0/trigger = true
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
@@ -99,7 +99,7 @@ autoplay = ""
 transform/pos = Vector2( -0.771701, -3.41726 )
 transform/scale = Vector2( 2.47495, 3.20827 )
 shape = SubResource( 1 )
-trigger = false
+trigger = true
 _update_shape_index = 0
 
 [node name="player_area" type="Area2D" parent="."]
@@ -107,7 +107,7 @@ _update_shape_index = 0
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
+shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -116,7 +116,7 @@ angular_damp = 1.0
 [node name="player_collision" type="CollisionShape2D" parent="player_area"]
 
 shape = SubResource( 6 )
-trigger = false
+trigger = true
 _update_shape_index = 0
 
 

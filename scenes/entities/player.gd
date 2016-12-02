@@ -28,6 +28,6 @@ func _process(delta):
 		anim.stop()
 	
 	if (current_animation != last_animation):
-		print(current_animation)
+		#print(current_animation)
 		anim.set_speed(2)
 		anim.play(current_animation)
