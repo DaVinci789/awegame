@@ -10,6 +10,7 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
+	globals.player_node = self
 	last_animation = current_animation
 	if (Input.is_action_pressed("ui_down")):
 		move(Vector2(0, speed))

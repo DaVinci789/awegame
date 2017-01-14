@@ -25,6 +25,7 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 speed_vals_min = 5
 speed_vals_max = 10
+teleport_range = 100
 
 [node name="runner_sprite" type="Sprite" parent="."]
 
@@ -53,5 +54,12 @@ _update_shape_index = 0
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="runner_teleport" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
 
 
