@@ -1,6 +1,10 @@
 # AWEGAME
 
-A game where an alpaca (todo) chases a grass monster (todo).
+A game where an alpaca (create sprites) chases a grass monster (todo).
+
+## TODO
+
+[ ] Main Hub
 
 Uses sprites from opengameart
 
