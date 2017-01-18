@@ -6,6 +6,10 @@ A game where an alpaca (create sprites) chases a grass monster (todo).
 
 [ ] Main Hub
 
+## DONE
+
+[x] Pause Menu
+
 Uses sprites from opengameart
 
 Alpaca spritesheet

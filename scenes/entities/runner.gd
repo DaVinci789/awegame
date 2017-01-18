@@ -60,6 +60,7 @@ func randex(exclude):
 	# This results in getting a random number that is not in EXCLUDE.
 	# This function also only works when the exclude range is exactly in the middle of
 	# random numbers generated.
+	# But this is okay for making sure that the runner doesn't get into the wrong range.
 	randomize()
 	var r = floor(rand_range(-teleport_range, teleport_range - exclude.size()))
 	print("foop: " + str(teleport_range))

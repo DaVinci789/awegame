@@ -1,10 +1,10 @@
 # pause.gd
 # controls for pausing the game.
-extends Panel
+extends VBoxContainer
 
-onready var bcontinue = get_node("pause_vbox/continue_button")
-onready var bquit     = get_node("pause_vbox/end_button")
-onready var breload   = get_node("pause_vbox/reload_button")
+onready var bcontinue = get_node("pause_container/continue")
+onready var bquit     = get_node("pause_container/qui")
+onready var breload   = get_node("pause_container/reload_button")
 
 func _ready():
 	self.hide()
@@ -29,5 +29,5 @@ func _on_end_clicked():
 
 func _on_reload_clicked():
 	self.hide()
-	get_tree().reload_current_scene() # Basically the world scene
+	get_tree().reload_current_scene() # Usually the world scene
 	get_tree().set_pause(false)

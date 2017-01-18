@@ -2,9 +2,13 @@ extends KinematicBody2D
 
 export (int) var speed = 0
 
+# for animation
 var current_animation
 var last_animation
 onready var anim = get_node("player_anim") 
+
+# for state holding/manipulation
+var can_move = true setget get_player_movement_bool, set_player_movement_bool
 
 func _ready():
 	set_process(true)
@@ -13,6 +17,12 @@ func _process(delta):
 	update()
 	globals.player_node = self
 	last_animation = current_animation
+	
+	# Movement checks
+	if !can_move:
+		return
+	
+	# Input
 	if (Input.is_action_pressed("ui_down")):
 		move(Vector2(0, speed))
 		current_animation = "walk_down"
@@ -29,6 +39,7 @@ func _process(delta):
 		last_animation = null
 		anim.stop()
 	
+	# Animation
 	if (current_animation != last_animation):
 		#print(current_animation)
 		anim.set_speed(2)
@@ -39,5 +50,10 @@ func _draw():
 	var rpos = globals.runner_node.get_global_pos()
 	var self_gtrans = self.get_global_transform()
 	var plocal = self_gtrans.xform_inv(rpos)
-	
 	draw_line(Vector2(0,0), plocal, Color(255, 0, 0))
+
+func get_player_movement_bool():
+	return can_move
+
+func set_player_movement_bool(val):
+	can_move = val
