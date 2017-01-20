@@ -8,7 +8,7 @@ func _ready():
 	quit_button.connect("pressed", self, "_quit_game")
 
 func _start_game():
-	get_tree().change_scene("res://scenes/world.tscn")
+	get_tree().change_scene("res://scenes/hub.tscn")
 	self.queue_free()
 
 func _quit_game():

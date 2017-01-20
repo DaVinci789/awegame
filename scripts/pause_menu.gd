@@ -1,5 +1,7 @@
 extends Control
 
+export (String) var scene_togo = "res://scenes/main_menu.tscn"
+
 onready var continue_button = get_node("button_holder/continue")
 onready var return_button = get_node("button_holder/return")
 
@@ -15,4 +17,4 @@ func _on_continue_pressed():
 func _on_return_pressed():
 	self.hide()
 	get_tree().set_pause(false)
-	get_tree().change_scene("res://scenes/main_menu.tscn")
+	get_tree().change_scene(scene_togo)
