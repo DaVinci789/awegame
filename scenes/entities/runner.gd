@@ -51,6 +51,7 @@ func _on_tele_start():
 		                     self.get_pos()[1] + tele_y))
 		print(self.get_pos())
 		runner_tele.stop()
+		self.speed = rand_range(self.speed_vals_min, self.speed_vals_max)
 	else:
 		print("GAME OVER")
 		get_tree().set_pause(true)
