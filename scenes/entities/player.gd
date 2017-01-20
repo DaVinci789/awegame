@@ -15,7 +15,8 @@ func _ready():
 
 func _process(delta):
 	if get_tree().get_current_scene().get_name() == "world":
-		update()
+		#update()
+		pass
 	globals.player_node = self
 	last_animation = current_animation
 	
@@ -48,12 +49,13 @@ func _process(delta):
 
 func _draw():
 	#draw_line(Vector2(0,0), Vector2(atan(globals.runner_node.get_pos()[0] - self.get_pos()[0]) * 50, atan(globals.runner_node.get_pos()[1] - self.get_pos()[1] * 50)), Color(255, 0, 0), 1)
-	if globals.runner_node == null:
-		return
-	var rpos = globals.runner_node.get_global_pos()
-	var self_gtrans = self.get_global_transform()
-	var plocal = self_gtrans.xform_inv(rpos)
-	draw_line(Vector2(0,0), plocal, Color(255, 0, 0))
+	#if globals.runner_node == null:
+	#	return
+	#var rpos = globals.runner_node.get_global_pos()
+	#var self_gtrans = self.get_global_transform()
+	#var plocal = self_gtrans.xform_inv(rpos)
+	#draw_line(Vector2(0,0), plocal, Color(255, 0, 0))
+	pass
 
 func get_player_movement_bool():
 	return can_move

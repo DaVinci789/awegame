@@ -47,5 +47,6 @@ scale = Vector2( 1, 1 )
 
 process/pause_mode = 2
 visibility/visible = false
+scene_togo = "res://scenes/hub.tscn"
 
 
