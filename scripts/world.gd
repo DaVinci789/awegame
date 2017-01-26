@@ -8,9 +8,10 @@ onready var player_score = get_node("hud/text_v/player_score")
 export (int) var play_time = 60
 
 func _ready():
-	time_left.set_wait_time(play_time)
 	pause_menu.hide()
+	time_left.set_wait_time(play_time)
 	time_left.start()
+	time_left.connect("timeout", self, "_on_time_end")
 	set_process(true)
 	set_process_input(true)
 
@@ -22,3 +23,8 @@ func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
 		pause_menu.show()
 		get_tree().set_pause(true)
+
+func _on_time_end():
+	print("GAME OVER")
+	get_tree().change_scene("res://scenes/main_menu.tscn")
+	self.queue_free()

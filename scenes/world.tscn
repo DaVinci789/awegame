@@ -35,8 +35,6 @@ drag_margin/bottom = 0.0
 [node name="runner" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 0, 200 )
-speed_vals_min = 7
-speed_vals_max = 20
 
 [node name="hud" type="CanvasLayer" parent="."]
 
