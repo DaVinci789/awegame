@@ -8,6 +8,3 @@ func _ready():
 func _on_start_area_entered(body):
 	if body.get_name() == "player":
 		get_tree().change_scene("res://scenes/world.tscn")
-		
-
-

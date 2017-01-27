@@ -56,5 +56,6 @@ func _on_tele_start():
 		globals.player_node.set_player_score(globals.player_node.get_player_score() + 1)
 	else:
 		print("GAME OVER")
+		globals.set_high_score(globals.player_node.get_player_score())
 		get_tree().change_scene("res://scenes/main_menu.tscn")
 
