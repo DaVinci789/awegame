@@ -3,8 +3,8 @@ extends KinematicBody2D
 export (int) var speed = 0
 
 # for animation
-var current_animation
-var last_animation
+var current_animation = null
+var last_animation    = null
 onready var anim = get_node("player_anim") 
 
 # for state holding/manipulation
@@ -12,35 +12,48 @@ var can_move = true setget set_player_movement_bool, get_player_movement_bool
 var score    = 0    setget set_player_score, get_player_score
 
 func _ready():
+	globals.player_node = self
 	set_process(true)
 	set_process_input(true)
 
 func _process(delta):
 	update()
-	globals.player_node = self
-	last_animation = current_animation
 	if !can_move:
 		return
+
+func _input(event):
 	# Input
-	if (Input.is_action_pressed("ui_down")):
+	last_animation = current_animation
+	if (event.is_action_pressed("ui_down")):
 		move(Vector2(0, speed))
 		current_animation = "walk_down"
-	elif (Input.is_action_pressed("ui_up")):
+		if (current_animation != last_animation):
+			anim.set_speed(2)
+			anim.play(current_animation)
+	elif (event.is_action_pressed("ui_up")):
 		move(Vector2(0, -speed))
 		current_animation = "walk_forward"
-	elif (Input.is_action_pressed("ui_right")):
+		if (current_animation != last_animation):
+			anim.set_speed(2)
+			anim.play(current_animation)
+	elif (event.is_action_pressed("ui_right")):
 		move(Vector2(speed, 0))
 		current_animation = "walk_right"
-	elif (Input.is_action_pressed("ui_left")):
+		if (current_animation != last_animation):
+			anim.set_speed(2)
+			anim.play(current_animation)
+	elif (event.is_action_pressed("ui_left")):
 		move(Vector2(-speed, 0))
 		current_animation = "walk_left"
-	else:
+		if (current_animation != last_animation):
+			anim.set_speed(2)
+			anim.play(current_animation)
+	elif (not Input.is_action_pressed("ui_down") and \
+		  not Input.is_action_pressed("ui_up")   and \
+		  not Input.is_action_pressed("ui_left") and \
+		  not Input.is_action_pressed("ui_right")):
 		last_animation = null
 		anim.stop()
-	if (current_animation != last_animation):
-		#print(current_animation)
-		anim.set_speed(2)
-		anim.play(current_animation)
 
 func _draw():
 	var rpos = globals.runner_node.get_global_pos()
